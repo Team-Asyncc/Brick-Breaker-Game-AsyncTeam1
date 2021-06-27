@@ -104,10 +104,15 @@ function createBricks() {
           brick.offSetTop +
           brick.marginTop,
         status: true,
+        checkPoint:false
       };
     }
   }
 }
+
+
+
+
 
 createBricks();
 //draw the bricks
@@ -120,10 +125,54 @@ function drawBricks() {
         ctx.fillRect(b.x, b.y, brick.width, brick.height);
         ctx.strokeStyle = brick.strokeColor;
         ctx.strokeRect(b.x, b.y, brick.width, brick.height);
+        
       }
+      
     }
   }
 }
+// Adding powerball functionality
+
+
+let powerBallX
+let powerBallY
+let flag=false;
+let randomX=Math.floor(Math.random()*3);
+let randomY=Math.floor(Math.random()*3);
+bricks[randomX][randomY].checkPoint=true;
+powerBallY=bricks[randomX][randomY].y;
+powerBallX=bricks[randomY][randomY].x;
+function powerBall(){
+   
+  if (
+    powerBallX < paddle.x + paddle.width &&
+    powerBallX > paddle.x &&
+    powerBallY < paddle.y + paddle.height &&
+    powerBallY > paddle.y
+  ){
+    flag=false
+    paddle.width=120;
+  }
+  if(powerBallY>canvas.height)
+   flag=false;
+  
+   
+  //console.log('powerBall',this);
+    powerBallY+=0.1;
+
+    ctx.beginPath()
+    ctx.arc(powerBallX,powerBallY+50,8,0,360);
+    ctx.fillStyle='green';
+    ctx.fill();
+
+    requestAnimationFrame(powerBall)
+  
+}
+
+
+
+console.log(bricks[1][1].checkPoint,'l');
+
 
 //ball brick collision
 function ballBrickCollision() {
@@ -140,6 +189,9 @@ function ballBrickCollision() {
           ball.dy = -ball.dy;
           b.status = false;
           score += score_unit;
+          if(b.checkPoint){
+            flag=true;
+          }
         }
       }
     }
@@ -212,12 +264,15 @@ const update = () => {
   moveBall();
   ballPaddleCollision();
   ballBrickCollision();
+  if(flag)
+  powerBall();
 };
 
 function loop() {
   ctx.drawImage(BG_IMG, 0, 0);
   draw();
   update();
+  
   ballWallCollision();
   requestAnimationFrame(loop);
 }
