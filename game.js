@@ -16,7 +16,8 @@ let score_unit = 10;
 let level = 1;
 const maxLevel = 3;
 let game_over = false;
-
+let mouseX;
+let mouseY;
 // paddle
 const paddle = {
   x: canvas.width / 2 - paddle_width / 2,
@@ -32,6 +33,26 @@ const drawPaddle = () => {
   ctx.strokeStyle = "#ffcd05";
   ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
 };
+
+////////////////////////////////////////////////////////////////////////
+//mouse movement
+
+function updateMousePosition(e) {
+  const rect = canvas.getBoundingClientRect();
+  const root = document.documentElement;
+
+  mouseX = e.clientX - rect.left - root.scrollLeft;
+  mouseY = e.clientY - rect.top - root.scrollTop;
+  let paddlemove = mouseX - paddle.width / 2;
+  if (paddlemove + paddle.width < canvas.width && paddlemove > 0)
+    paddle.x = mouseX - paddle.width / 2;
+}
+
+document.addEventListener("mousemove", updateMousePosition);
+
+//mouse movement ends
+/////////////////////////////////////////////////////////////////////////////////
+
 //control the paddle
 document.addEventListener("keydown", (e) => {
   if (e.keyCode == 37) {
@@ -262,4 +283,4 @@ function loop() {
   ballWallCollision();
   if (!game_over) requestAnimationFrame(loop);
 }
-// loop();
+loop();
