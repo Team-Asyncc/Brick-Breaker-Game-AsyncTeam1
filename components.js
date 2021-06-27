@@ -4,7 +4,7 @@
 
 //load bg image
 const BG_IMG = new Image();
-BG_IMG.src = "./img/bg1.jpg";
+BG_IMG.src = "./img/canvasbg.jpg";
 // console.log(BG_IMG);
 const LEVEL_IMG = new Image();
 LEVEL_IMG.src = "./img/level.png";
