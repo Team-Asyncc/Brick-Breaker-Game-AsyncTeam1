@@ -37,9 +37,9 @@ const paddle = {
 };
 
 const drawPaddle = () => {
-	ctx.fillStyle = 'red';
+	ctx.fillStyle = '#ff649f';
 	ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
-	ctx.strokeStyle = '#ffcd05';
+	ctx.strokeStyle = '#52006A';
 	ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
 };
 
@@ -122,8 +122,8 @@ const brick = {
 	offSetLeft: 20,
 	offSetTop: 20,
 	marginTop: 40,
-	fillColor: '#2e35',
-	strokeColor: '#111',
+	fillColor: '#a97351',
+	strokeColor: '#783f11',
 };
 
 let bricks = [];
@@ -183,7 +183,7 @@ function ballBrickCollision() {
 }
 
 function showGameStats(text, textX, textY, img, imgX, imgY) {
-	ctx.fillStyle = '#fff';
+	ctx.fillStyle = '#000';
 	ctx.font = '25px sans-serif';
 	ctx.fillText(text, textX, textY);
 	ctx.drawImage(img, imgX, imgY, (width = 25), (height = 25));
