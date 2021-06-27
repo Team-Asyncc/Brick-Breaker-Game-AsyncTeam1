@@ -1,11 +1,11 @@
-const canvas = document.getElementById('gameboard');
-const ctx = canvas.getContext('2d');
-const heading = document.getElementById('heading');
+const canvas = document.getElementById("gameboard");
+const ctx = canvas.getContext("2d");
+const heading = document.getElementById("heading");
 // dom
-const btn = document.getElementById('start');
-btn.addEventListener('click', () => {
-  canvas.classList.toggle('hide');
-  heading.classList.toggle('hide');
+const btn = document.getElementById("start");
+btn.addEventListener("click", () => {
+  canvas.classList.toggle("hide");
+  heading.classList.toggle("hide");
 
   loop();
 });
@@ -37,9 +37,9 @@ const paddle = {
 };
 
 const drawPaddle = () => {
-  ctx.fillStyle = '#ff649f';
+  ctx.fillStyle = "#ff649f";
   ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
-  ctx.strokeStyle = '#52006A';
+  ctx.strokeStyle = "#52006A";
   ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
 };
 
@@ -57,36 +57,36 @@ function updateMousePosition(e) {
     paddle.x = mouseX - paddle.width / 2;
 }
 
-document.addEventListener('mousemove', updateMousePosition);
+document.addEventListener("mousemove", updateMousePosition);
 
 //mouse movement ends
 /////////////////////////////////////////////////////////////////////////////////
 
 //control the paddle using keys
-// document.addEventListener("keydown", (e) => {
-//   if (e.keyCode == 37) {
-//     leftArrow = true;
-//   } else if (e.keyCode == 39) {
-//     rightArrow = true;
-//   }
-// });
+document.addEventListener("keydown", (e) => {
+  if (e.keyCode == 37) {
+    leftArrow = true;
+  } else if (e.keyCode == 39) {
+    rightArrow = true;
+  }
+});
 
-// document.addEventListener("keyup", (e) => {
-//   if (e.keyCode == 37) {
-//     leftArrow = false;
-//   } else if (e.keyCode == 39) {
-//     rightArrow = false;
-//   }
-// });
+document.addEventListener("keyup", (e) => {
+  if (e.keyCode == 37) {
+    leftArrow = false;
+  } else if (e.keyCode == 39) {
+    rightArrow = false;
+  }
+});
 
 //move paddle using keys
-// const movePaddle = () => {
-//   if (rightArrow && paddle.x + paddle.width < canvas.width) {
-//     paddle.x += paddle.dx;
-//   } else if (leftArrow && paddle.x > 0) {
-//     paddle.x -= paddle.dx;
-//   }
-// };
+const movePaddle = () => {
+  if (rightArrow && paddle.x + paddle.width < canvas.width) {
+    paddle.x += paddle.dx;
+  } else if (leftArrow && paddle.x > 0) {
+    paddle.x -= paddle.dx;
+  }
+};
 
 // create ball
 const ball = {
@@ -101,9 +101,9 @@ const ball = {
 const drawBall = () => {
   ctx.beginPath();
   ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-  ctx.fillStyle = '#ffcd05';
+  ctx.fillStyle = "#ffcd05";
   ctx.fill();
-  ctx.strokeStyle = '#2e3548';
+  ctx.strokeStyle = "#2e3548";
   ctx.stroke();
   ctx.closePath();
 };
@@ -122,8 +122,8 @@ const brick = {
   offSetLeft: 20,
   offSetTop: 20,
   marginTop: 40,
-  fillColor: '#a97351',
-  strokeColor: '#783f11',
+  fillColor: "#a97351",
+  strokeColor: "#783f11",
 };
 
 let bricks = [];
@@ -139,15 +139,11 @@ function createBricks() {
           brick.offSetTop +
           brick.marginTop,
         status: true,
-        checkPoint:false
+        checkPoint: false,
       };
     }
   }
 }
-
-
-
-
 
 createBricks();
 //draw the bricks
@@ -166,75 +162,67 @@ function drawBricks() {
 }
 // Adding powerball functionality
 
-
-let powerBallX
-let powerBallY
-let flag=false;
-let randomX=Math.floor(Math.random()*3);
-let randomY=Math.floor(Math.random()*3);
-bricks[randomX][randomY].checkPoint=true;
-powerBallY=bricks[randomX][randomY].y;
-powerBallX=bricks[randomY][randomY].x;
-function powerBall(){
-   
+let powerBallX;
+let powerBallY;
+let flag = false;
+let randomX = Math.floor(Math.random() * 3);
+let randomY = Math.floor(Math.random() * 3);
+bricks[randomX][randomY].checkPoint = true;
+powerBallY = bricks[randomX][randomY].y;
+powerBallX = bricks[randomY][randomY].x;
+function powerBall() {
   if (
     powerBallX < paddle.x + paddle.width &&
     powerBallX > paddle.x &&
     powerBallY < paddle.y + paddle.height &&
     powerBallY > paddle.y
-  ){
-    flag=false
-    paddle.width=120;
+  ) {
+    flag = false;
+    paddle.width = 120;
   }
-  if(powerBallY>canvas.height)
-   flag=false;
-  
-   
+  if (powerBallY > canvas.height) flag = false;
+
   //console.log('powerBall',this);
-    powerBallY+=0.1;
+  powerBallY += 0.1;
 
-    ctx.beginPath()
-    ctx.arc(powerBallX,powerBallY+50,8,0,360);
-    ctx.fillStyle='green';
-    ctx.fill();
+  ctx.beginPath();
+  ctx.arc(powerBallX, powerBallY + 50, 8, 0, 360);
+  ctx.fillStyle = "green";
+  ctx.fill();
 
-    requestAnimationFrame(powerBall)
-  
+  requestAnimationFrame(powerBall);
 }
 
-
-
-console.log(bricks[1][1].checkPoint,'l');
-
+console.log(bricks[1][1].checkPoint, "l");
 
 //ball brick collision
 function ballBrickCollision() {
-	for (let r = 0; r < brick.row; r++) {
-		for (let c = 0; c < brick.column; c++) {
-			let b = bricks[r][c];
-			if (b.status) {
-				if (
-					ball.x + ball.radius > b.x &&
-					ball.x - ball.radius < b.x + brick.width &&
-					ball.y + ball.radius > b.y &&
-					ball.y - ball.radius < b.y + brick.height
-				) {
-					BRICK_HIT.play();
-					ball.dy = -ball.dy;
-					b.status = false;
-					score += score_unit;
-          if(b.checkPoint){
-            flag=true;
+  for (let r = 0; r < brick.row; r++) {
+    for (let c = 0; c < brick.column; c++) {
+      let b = bricks[r][c];
+      if (b.status) {
+        if (
+          ball.x + ball.radius > b.x &&
+          ball.x - ball.radius < b.x + brick.width &&
+          ball.y + ball.radius > b.y &&
+          ball.y - ball.radius < b.y + brick.height
+        ) {
+          BRICK_HIT.play();
+          ball.dy = -ball.dy;
+          b.status = false;
+          score += score_unit;
+          if (b.checkPoint) {
+            flag = true;
           }
-				}
-			}
-		}
-	}
+        }
+      }
+    }
+  }
 }
 
 function showGameStats(text, textX, textY, img, imgX, imgY) {
-  ctx.fillStyle = '#000';
-  ctx.font = '25px sans-serif';
+  ctx.fillStyle = "#000";
+  ctx.font = "25px sans-serif";
   ctx.fillText(text, textX, textY);
   ctx.drawImage(img, imgX, imgY, (width = 25), (height = 25));
 }
@@ -337,14 +325,13 @@ function levelUp() {
 
 //update function
 const update = () => {
-	// movePaddle();
-	moveBall();
-	ballPaddleCollision();
-	ballBrickCollision();
-	gameOver();
-	levelUp();
-  if(flag)
-  powerBall();
+  movePaddle();
+  moveBall();
+  ballPaddleCollision();
+  ballBrickCollision();
+  gameOver();
+  levelUp();
+  if (flag) powerBall();
 };
 
 function loop() {
@@ -356,17 +343,17 @@ function loop() {
 }
 // loop();
 // SELECT SOUND ELEMENT
-const soundElement = document.getElementById('sound');
+const soundElement = document.getElementById("sound");
 
-soundElement.addEventListener('click', audioManager);
+soundElement.addEventListener("click", audioManager);
 
 function audioManager() {
   // CHANGE IMAGE SOUND_ON/OFF
-  let imgSrc = soundElement.getAttribute('src');
+  let imgSrc = soundElement.getAttribute("src");
   let SOUND_IMG =
-    imgSrc == 'img/SOUND_ON.png' ? 'img/SOUND_OFF.png' : 'img/SOUND_ON.png';
+    imgSrc == "img/SOUND_ON.png" ? "img/SOUND_OFF.png" : "img/SOUND_ON.png";
 
-  soundElement.setAttribute('src', SOUND_IMG);
+  soundElement.setAttribute("src", SOUND_IMG);
 
   // MUTE AND UNMUTE SOUNDS
   WALL_HIT.muted = WALL_HIT.muted ? false : true;
@@ -386,7 +373,7 @@ const restart = document.getElementById("restart");
 // CLICK ON PLAY AGAIN BUTTON
 restart.addEventListener("click", function () {
   location.reload(); // reload the page
-})
+});
 
 // SHOW YOU WIN
 function showYouWin() {
