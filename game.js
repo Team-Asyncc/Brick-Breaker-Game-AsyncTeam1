@@ -228,6 +228,7 @@ const ballWallCollision = () => {
   }
   if (ball.y + ball.radius > canvas.height) {
     life--;
+    paddle.width = 100;
     resetBall();
   }
 };
