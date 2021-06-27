@@ -84,7 +84,7 @@ const ball = {
   x: canvas.width / 2,
   y: paddle.y - ball_radius,
   radius: ball_radius,
-  speed: 4,
+  speed: 6,
   dx: 3 * (Math.random() * 2 - 1),
   dy: -3,
 };
@@ -125,8 +125,7 @@ function createBricks() {
     for (let c = 0; c < brick.column; c++) {
       bricks[r][c] = {
         x: c * (brick.offSetLeft + brick.width) + brick.offSetLeft,
-        y:
-          r * (brick.offSetTop + brick.height) +
+        y: r * (brick.offSetTop + brick.height) +
           brick.offSetTop +
           brick.marginTop,
         status: true,
@@ -163,6 +162,7 @@ function ballBrickCollision() {
           ball.y + ball.radius > b.y &&
           ball.y - ball.radius < b.y + brick.height
         ) {
+          BRICK_HIT.play();
           ball.dy = -ball.dy;
           b.status = false;
           score += score_unit;
@@ -203,12 +203,15 @@ const draw = () => {
 const ballWallCollision = () => {
   if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
     ball.dx = -ball.dx;
+    WALL_HIT.play();
   }
   if (ball.y - ball.radius < 0) {
     ball.dy = -ball.dy;
+    WALL_HIT.play();
   }
   if (ball.y + ball.radius > canvas.height) {
     life--;
+    LIFE_LOST.play();
     resetBall();
   }
 };
@@ -228,6 +231,7 @@ const ballPaddleCollision = () => {
     ball.y < paddle.y + paddle.height &&
     ball.y > paddle.y
   ) {
+    PADDLE_HIT.play();
     // check where the ball hits
     let collidePoint = ball.x - (paddle.x + paddle.width / 2);
     collidePoint = collidePoint / (paddle.width / 2);
@@ -250,10 +254,11 @@ function levelUp() {
   for (let r = 0; r < brick.row; r++) {
     for (let c = 0; c < brick.column; c++) {
       let b = bricks[r][c];
-      isLevelDown &&= !b.status;
+      isLevelDown = isLevelDown && !b.status;
     }
   }
   if (isLevelDown) {
+    WIN.play();
     if (level >= maxLevel) {
       game_over = true;
       return;
@@ -284,3 +289,24 @@ function loop() {
   if (!game_over) requestAnimationFrame(loop);
 }
 loop();
+
+
+// SELECT SOUND ELEMENT
+const soundElement = document.getElementById("sound");
+
+soundElement.addEventListener("click", audioManager);
+
+function audioManager() {
+  // CHANGE IMAGE SOUND_ON/OFF
+  let imgSrc = soundElement.getAttribute("src");
+  let SOUND_IMG = imgSrc == "img/SOUND_ON.png" ? "img/SOUND_OFF.png" : "img/SOUND_ON.png";
+
+  soundElement.setAttribute("src", SOUND_IMG);
+
+  // MUTE AND UNMUTE SOUNDS
+  WALL_HIT.muted = WALL_HIT.muted ? false : true;
+  PADDLE_HIT.muted = PADDLE_HIT.muted ? false : true;
+  BRICK_HIT.muted = BRICK_HIT.muted ? false : true;
+  WIN.muted = WIN.muted ? false : true;
+  LIFE_LOST.muted = LIFE_LOST.muted ? false : true;
+}
