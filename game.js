@@ -13,6 +13,10 @@ let rightArrow = false;
 let life = 3;
 let score = 0;
 let score_unit = 10;
+let level = 1;
+const maxLevel = 3;
+let game_over = false;
+
 // paddle
 const paddle = {
   x: canvas.width / 2 - paddle_width / 2,
@@ -36,6 +40,7 @@ document.addEventListener("keydown", (e) => {
     rightArrow = true;
   }
 });
+
 document.addEventListener("keyup", (e) => {
   if (e.keyCode == 37) {
     leftArrow = false;
@@ -159,11 +164,18 @@ const draw = () => {
   drawBall();
   drawBricks();
   //show score
-  //   showGameStats(text, textX, textY. img, imgX, imgY)
-  //   //show lives
-  //   showGameStats(text, textX, textY. img, imgX, imgY)
-  //   //show level
-  //   showGameStats(text, textX, textY. img, imgX, imgY)
+  showGameStats(score, 35, 25, SCORE_IMG, 5, 5);
+  //show lives
+  showGameStats(life, canvas.width - 25, 25, LIFE_IMG, canvas.width - 55, 5);
+  //show level
+  showGameStats(
+    level,
+    canvas.width / 2,
+    25,
+    LEVEL_IMG,
+    canvas.width / 2 - 30,
+    5
+  );
 };
 
 //ball and wall collision
@@ -206,12 +218,41 @@ const ballPaddleCollision = () => {
   }
 };
 
+//game over
+function gameOver() {
+  if (life <= 0) game_over = true;
+}
+//level up
+function levelUp() {
+  let isLevelDown = true;
+  //check for all bricks broken
+  for (let r = 0; r < brick.row; r++) {
+    for (let c = 0; c < brick.column; c++) {
+      let b = bricks[r][c];
+      isLevelDown &&= !b.status;
+    }
+  }
+  if (isLevelDown) {
+    if (level >= maxLevel) {
+      game_over = true;
+      return;
+    }
+    brick.row++;
+    createBricks();
+    ball.speed += 0.5;
+    resetBall();
+    level++;
+  }
+}
+
 //update function
 const update = () => {
   movePaddle();
   moveBall();
   ballPaddleCollision();
   ballBrickCollision();
+  gameOver();
+  levelUp();
 };
 
 function loop() {
@@ -219,6 +260,6 @@ function loop() {
   draw();
   update();
   ballWallCollision();
-  requestAnimationFrame(loop);
+  if (!game_over) requestAnimationFrame(loop);
 }
-loop();
+// loop();
