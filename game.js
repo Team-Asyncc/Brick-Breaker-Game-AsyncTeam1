@@ -124,6 +124,7 @@ function drawBricks() {
     }
   }
 }
+
 //ball brick collision
 function ballBrickCollision() {
   for (let r = 0; r < brick.row; r++) {
@@ -145,11 +146,11 @@ function ballBrickCollision() {
   }
 }
 
-function showGameStats(text, textX, textY. img, imgX, imgY){
-    ctx.fillStyle = '#fff'
-    ctx.font = '25px sans-serif';
-    ctx.fillText(text, textX, textY)
-    ctx.drawImage(img,imgX, imgY, width= 25,height=25)
+function showGameStats(text, textX, textY, img, imgX, imgY) {
+  ctx.fillStyle = "#fff";
+  ctx.font = "25px sans-serif";
+  ctx.fillText(text, textX, textY);
+  ctx.drawImage(img, imgX, imgY, (width = 25), (height = 25));
 }
 
 //draw function
@@ -158,11 +159,11 @@ const draw = () => {
   drawBall();
   drawBricks();
   //show score
-  showGameStats(text, textX, textY. img, imgX, imgY)
-  //show lives
-  showGameStats(text, textX, textY. img, imgX, imgY)
-  //show level
-  showGameStats(text, textX, textY. img, imgX, imgY)
+  //   showGameStats(text, textX, textY. img, imgX, imgY)
+  //   //show lives
+  //   showGameStats(text, textX, textY. img, imgX, imgY)
+  //   //show level
+  //   showGameStats(text, textX, textY. img, imgX, imgY)
 };
 
 //ball and wall collision
