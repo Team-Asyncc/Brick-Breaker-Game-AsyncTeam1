@@ -10,6 +10,46 @@
 	left: 15px;
 }
 
+#gameover {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	height: 500px;
+	background: rgba(44, 40, 40, 0.8);
+	display: none;
+	z-index: 4;
+}
+
+#youwon {
+	width: 100px;
+	position: absolute;
+	top: 200px;
+	left: 150px;
+	display: none;
+	z-index: 3;
+}
+
+#youlose {
+	width: 400px;
+	position: absolute;
+	top: 100px;
+	left: 0px;
+	display: none;
+	z-index: 3;
+}
+
+#restart {
+	position: absolute;
+	top: 310px;
+	left: 180px;
+	cursor: pointer;
+	font-size: 1.25em;
+	color: #FFF;
+	z-index: 3;
+}
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -67,6 +107,7 @@
 .button:hover {
 	background-color: #e009a3;
 }
+
 .hide {
 	display: none;
 }
