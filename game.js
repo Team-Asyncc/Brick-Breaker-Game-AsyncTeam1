@@ -134,14 +134,20 @@ function createBricks() {
     for (let c = 0; c < brick.column; c++) {
       bricks[r][c] = {
         x: c * (brick.offSetLeft + brick.width) + brick.offSetLeft,
-        y: r * (brick.offSetTop + brick.height) +
+        y:
+          r * (brick.offSetTop + brick.height) +
           brick.offSetTop +
           brick.marginTop,
         status: true,
+        checkPoint:false
       };
     }
   }
 }
+
+
+
+
 
 createBricks();
 //draw the bricks
@@ -158,27 +164,72 @@ function drawBricks() {
     }
   }
 }
+// Adding powerball functionality
+
+
+let powerBallX
+let powerBallY
+let flag=false;
+let randomX=Math.floor(Math.random()*3);
+let randomY=Math.floor(Math.random()*3);
+bricks[randomX][randomY].checkPoint=true;
+powerBallY=bricks[randomX][randomY].y;
+powerBallX=bricks[randomY][randomY].x;
+function powerBall(){
+   
+  if (
+    powerBallX < paddle.x + paddle.width &&
+    powerBallX > paddle.x &&
+    powerBallY < paddle.y + paddle.height &&
+    powerBallY > paddle.y
+  ){
+    flag=false
+    paddle.width=120;
+  }
+  if(powerBallY>canvas.height)
+   flag=false;
+  
+   
+  //console.log('powerBall',this);
+    powerBallY+=0.1;
+
+    ctx.beginPath()
+    ctx.arc(powerBallX,powerBallY+50,8,0,360);
+    ctx.fillStyle='green';
+    ctx.fill();
+
+    requestAnimationFrame(powerBall)
+  
+}
+
+
+
+console.log(bricks[1][1].checkPoint,'l');
+
 
 //ball brick collision
 function ballBrickCollision() {
-  for (let r = 0; r < brick.row; r++) {
-    for (let c = 0; c < brick.column; c++) {
-      let b = bricks[r][c];
-      if (b.status) {
-        if (
-          ball.x + ball.radius > b.x &&
-          ball.x - ball.radius < b.x + brick.width &&
-          ball.y + ball.radius > b.y &&
-          ball.y - ball.radius < b.y + brick.height
-        ) {
-          BRICK_HIT.play();
-          ball.dy = -ball.dy;
-          b.status = false;
-          score += score_unit;
-        }
-      }
-    }
-  }
+	for (let r = 0; r < brick.row; r++) {
+		for (let c = 0; c < brick.column; c++) {
+			let b = bricks[r][c];
+			if (b.status) {
+				if (
+					ball.x + ball.radius > b.x &&
+					ball.x - ball.radius < b.x + brick.width &&
+					ball.y + ball.radius > b.y &&
+					ball.y - ball.radius < b.y + brick.height
+				) {
+					BRICK_HIT.play();
+					ball.dy = -ball.dy;
+					b.status = false;
+					score += score_unit;
+          if(b.checkPoint){
+            flag=true;
+          }
+				}
+			}
+		}
+	}
 }
 
 function showGameStats(text, textX, textY, img, imgX, imgY) {
@@ -286,12 +337,14 @@ function levelUp() {
 
 //update function
 const update = () => {
-  // movePaddle();
-  moveBall();
-  ballPaddleCollision();
-  ballBrickCollision();
-  gameOver();
-  levelUp();
+	// movePaddle();
+	moveBall();
+	ballPaddleCollision();
+	ballBrickCollision();
+	gameOver();
+	levelUp();
+  if(flag)
+  powerBall();
 };
 
 function loop() {

@@ -127,6 +127,7 @@
 	font-weight: normal;
 	font-size: 30px;
 	color: #ff4dcd;
+    user-select: none;
 }
 
 #gameboard {
@@ -148,18 +149,6 @@
 	background-size: 75%;
 }
 
-#muffin {
-	position: absolute;
-	/* left: 15px;
-    bottom: 25px; */
-	height: 175px;
-	width: 150px;
-	background: url('./img/muffin.png');
-	transform: rotate(30.81deg);
-	background-size: 100%;
-	background-repeat: no-repeat;
-	z-index: 1;
-}
 
 #footer {
 	position: absolute;
@@ -178,6 +167,18 @@
 	line-height: 17px;
 	text-shadow: 0px 0px 6px rgba(255, 0, 153, 0.93);
 	color: #ffbfe2;
+    user-select: none;
+}
+
+#candy1{
+    background: url("./img/rightbottom.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    right:0px;
+    bottom:40px;
+    height: 250px;
+    width: 250px;
+    z-index: 5;
 }
 
 /*! Bahar ka hai */
