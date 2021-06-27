@@ -53,31 +53,31 @@ document.addEventListener("mousemove", updateMousePosition);
 //mouse movement ends
 /////////////////////////////////////////////////////////////////////////////////
 
-//control the paddle
-document.addEventListener("keydown", (e) => {
-  if (e.keyCode == 37) {
-    leftArrow = true;
-  } else if (e.keyCode == 39) {
-    rightArrow = true;
-  }
-});
+//control the paddle using keys
+// document.addEventListener("keydown", (e) => {
+//   if (e.keyCode == 37) {
+//     leftArrow = true;
+//   } else if (e.keyCode == 39) {
+//     rightArrow = true;
+//   }
+// });
 
-document.addEventListener("keyup", (e) => {
-  if (e.keyCode == 37) {
-    leftArrow = false;
-  } else if (e.keyCode == 39) {
-    rightArrow = false;
-  }
-});
+// document.addEventListener("keyup", (e) => {
+//   if (e.keyCode == 37) {
+//     leftArrow = false;
+//   } else if (e.keyCode == 39) {
+//     rightArrow = false;
+//   }
+// });
 
-//move paddle
-const movePaddle = () => {
-  if (rightArrow && paddle.x + paddle.width < canvas.width) {
-    paddle.x += paddle.dx;
-  } else if (leftArrow && paddle.x > 0) {
-    paddle.x -= paddle.dx;
-  }
-};
+//move paddle using keys
+// const movePaddle = () => {
+//   if (rightArrow && paddle.x + paddle.width < canvas.width) {
+//     paddle.x += paddle.dx;
+//   } else if (leftArrow && paddle.x > 0) {
+//     paddle.x -= paddle.dx;
+//   }
+// };
 
 // create ball
 const ball = {
@@ -268,7 +268,7 @@ function levelUp() {
 
 //update function
 const update = () => {
-  movePaddle();
+  // movePaddle();
   moveBall();
   ballPaddleCollision();
   ballBrickCollision();
