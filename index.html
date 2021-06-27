@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brick Breaker</title>
-  </head>
-  <body>
-    <canvas id="gameboard" width="400" height="500"></canvas>
-    <script src="components.js"></script>
-    <script src="game.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brick Breaker</title>
+  <style>
+    #sound {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      position: absolute;
+      top: 465px;
+      left: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sound">
+    <img src="img/SOUND_ON.png" alt="" id="sound">
+  </div>
+  <canvas id="gameboard" width="400" height="500"></canvas>
+  <script src="components.js"></script>
+  <script src="game.js"></script>
+</body>
+
 </html>
