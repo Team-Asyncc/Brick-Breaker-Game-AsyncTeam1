@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#page{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./img/candybg3.png"); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#heading{
+width: 229.2px;
+height: 40px;
+margin-top: 40px;
+
+background: #FFC4F5;
+border: 1px solid #FFC7F6;
+box-sizing: border-box;
+box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+border-radius: 50px;
+z-index: 1;
+
+}
+
+#headtext{
+position: relative;
+top:-80%;
+font-family: Lobster;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 100px;
+/* display: flex;
+align-items: center; */
+text-align: center;
+
+color: #FF4DCD;
+
+
+}
+
+#gameboard{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: none;
+}
+
+#lollipop1{
+    position: absolute;
+    left:-20px;
+    top:10px;
+    height: 170px;
+    width: 200px;
+    background: url("./img/lollipop1.png") no-repeat; transform: rotate(136.77deg);
+    background-size: 75%;
+}
+
+#muffin{
+    position: absolute;
+    /* left: 15px;
+    bottom: 25px; */
+    height: 175px;
+    width: 150px;
+    background: url("./img/muffin.png"); transform: rotate(30.81deg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+#footer{
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("./img/footer3.png");
+    height: 40px;
+    width: 100%;
+    z-index: 2;
+    font-family: Bubblegum Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 17px;
+    text-shadow: 0px 0px 6px rgba(255, 0, 153, 0.93);
+    color: #FFBFE2;
+}
