@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brick Breaker</title>
-  </head>
-  <body>
-    <canvas id="gameboard" width="400" height="500"></canvas>
-    <script src="components.js"></script>
-    <script src="game.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Brick Breaker</title>
+	</head>
+
+	<body>
+		<div id="page">
+			<div id="heading" class="small-heading">Candy breaker</div>
+			<div id="lollipop1"></div>
+			<!-- <div id="muffin"></div> -->
+			<div id="candy1"></div>
+			<div id="candy2"></div>
+			<div id="lollipop2"></div>
+			<div id="footer">Developed by Async team</div>
+			<div class="start-screen">
+				<button id="start" class="button">
+					<p>Start Game</p>
+				</button>
+			</div>
+
+			<canvas id="gameboard" class="hide" width="400" height="500"></canvas>
+		</div>
+		<div class="sound">
+			<img src="img/SOUND_ON.png" alt="" id="sound" />
+		</div>
+		<script src="components.js"></script>
+		<script src="game.js"></script>
+	</body>
 </html>
