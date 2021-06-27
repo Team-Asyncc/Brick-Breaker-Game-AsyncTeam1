@@ -5,24 +5,29 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
   <title>Brick Breaker</title>
-  <style>
-    #sound {
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-      position: absolute;
-      top: 465px;
-      left: 15px;
-    }
-  </style>
 </head>
 
 <body>
+  <div id="page">
+    <div id="heading">
+      <div id="headtext">Candy breaker</div>
+    </div>
+    <div id="lollipop1"></div>
+    <div id="muffin"></div>
+    <div id="candy1"></div>
+    <div id="candy2"></div>
+    <div id="lollipop2"></div>
+    <div id="footer">
+      Developed by Async team
+    </div>
+    <button id="start"></button>
+    <canvas id="gameboard" width="400" height="500"></canvas>
+  </div>
   <div class="sound">
     <img src="img/SOUND_ON.png" alt="" id="sound">
   </div>
-  <canvas id="gameboard" width="400" height="500"></canvas>
   <script src="components.js"></script>
   <script src="game.js"></script>
 </body>
