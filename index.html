@@ -9,36 +9,37 @@
 		<title>Brick Breaker</title>
 	</head>
 	<body>
-  <div id="page">
-    <div id="heading" class="small-heading">Candy breaker</div>
-    <div id="lollipop1"></div>
-    <!-- <div id="muffin"></div> -->
-    <div id="candy1"></div>
-    <div id="footer">Developed by Async team</div>
-    <div class="start-screen">
-      <button id="start" class="button">
-        <p>Start Game</p>
-      </button>
-    </div>
-    <div id="gameover">
-      <img src="img/youwon.png" alt="" id="youwon">
-      <img src="img/gameover.png" alt="" id="youlose">
-      <div id="restart"><a href="#">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          RETRY!
-        </a></div>
-    </div>
-    <canvas id="gameboard" class="hide" width="400" height="500"></canvas>
-  </div>
-  <div class="sound">
-    <img src="img/SOUND_ON.png" alt="" id="sound" />
-  </div>
-  <script src="components.js"></script>
-  <script src="game.js"></script>
+		<div id="page">
+			<div id="heading" class="small-heading">Candy breaker</div>
+			<div id="lollipop1"></div>
+			<!-- <div id="muffin"></div> -->
+			<div id="candy1"></div>
+			<div id="footer">Developed by Async team</div>
+			<div class="start-screen">
+				<button id="start" class="button">
+					<p>Start Game</p>
+				</button>
+			</div>
+			<div id="gameover">
+				<img src="img/youwon.png" alt="" id="youwon" />
+				<img src="img/gameover.png" alt="" id="youlose" />
+				<div id="restart">
+					<a id="retry-btn" href="#">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						RETRY!
+					</a>
+				</div>
+			</div>
+			<canvas id="gameboard" class="hide" width="400" height="500"></canvas>
+		</div>
+		<div class="sound">
+			<img src="img/SOUND_ON.png" alt="" id="sound" />
+		</div>
+		<script src="components.js"></script>
+		<script src="game.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 	</body>
 </html>
-

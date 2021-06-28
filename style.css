@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 
 @font-face {
-	font-family: "cherry bomb";
-	src: url("./font/CherryBomb-Regular.woff")format("woff");
+	font-family: 'cherry bomb';
+	src: url('./font/CherryBomb-Regular.woff') format('woff');
 }
 
 #sound {
@@ -52,8 +52,8 @@
 	top: 250px;
 	left: 80px;
 	cursor: pointer;
-	font-size: 1.25em;
-	color: #FFF;
+	font-size: 1em;
+	color: #fff;
 	z-index: 3;
 }
 
@@ -62,56 +62,47 @@ a {
 	left: -5px;
 	display: inline-block;
 	padding: 15px 30px;
-	color: #FF639D;
+	color: #ff639d;
 	text-transform: uppercase;
 	letter-spacing: 4px;
 	text-decoration: none;
-	font-size: 50px;
+	font-size: 30px;
 	font-weight: 300;
 	overflow: hidden;
 	transition: 0.2s;
 }
 
-
-
 a:hover {
 	color: hsl(325, 57%, 40%);
-	background: #FF639D;
-	box-shadow: 0 0 10px #FF639D, 0 0 40px #FF639D, 0 0 80px #FF639D;
+	background: #ff639d;
+	box-shadow: 0 0 10px #ff639d, 0 0 40px #ff639d, 0 0 80px #ff639d;
 	transition-delay: 1s;
 }
-
 
 a span {
 	position: absolute;
 	display: block;
 }
 
-
-
-
 a span:nth-child(1) {
 	top: 0;
 	left: -100%;
 	width: 100%;
 	height: 2px;
-	background: linear-gradient(90deg, transparent, #FF639D);
+	background: linear-gradient(90deg, transparent, #ff639d);
 }
-
-
 
 a:hover span:nth-child(1) {
 	left: 100%;
 	transition: 1s;
 }
 
-
 a span:nth-child(3) {
 	bottom: 0;
 	right: -100%;
 	width: 100%;
 	height: 2px;
-	background: linear-gradient(270deg, transparent, #FF639D);
+	background: linear-gradient(270deg, transparent, #ff639d);
 }
 
 a:hover span:nth-child(3) {
@@ -120,14 +111,12 @@ a:hover span:nth-child(3) {
 	transition-delay: 0.5s;
 }
 
-
-
 a span:nth-child(2) {
 	top: -100%;
 	right: 0;
 	width: 2px;
 	height: 100%;
-	background: linear-gradient(180deg, transparent, #FF639D);
+	background: linear-gradient(180deg, transparent, #ff639d);
 }
 
 a:hover span:nth-child(2) {
@@ -136,14 +125,12 @@ a:hover span:nth-child(2) {
 	transition-delay: 0.25s;
 }
 
-
-
 a span:nth-child(4) {
 	bottom: -100%;
 	left: 0;
 	width: 2px;
 	height: 100%;
-	background: linear-gradient(360deg, transparent, #FF639D);
+	background: linear-gradient(360deg, transparent, #ff639d);
 }
 
 a:hover span:nth-child(4) {
@@ -251,7 +238,6 @@ a:hover span:nth-child(4) {
 	background-size: 75%;
 }
 
-
 #footer {
 	position: absolute;
 	bottom: 0px;
@@ -273,7 +259,7 @@ a:hover span:nth-child(4) {
 }
 
 #candy1 {
-	background: url("./img/rightbottom.png");
+	background: url('./img/rightbottom.png');
 	background-repeat: no-repeat;
 	position: absolute;
 	right: 0px;
