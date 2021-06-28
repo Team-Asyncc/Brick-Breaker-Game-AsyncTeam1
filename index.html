@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Brick Breaker</title>
-</head>
-
-<body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="icon" href="./img/candy.png" type="image/x-icon" />
+		<title>Brick Breaker</title>
+	</head>
+	<body>
   <div id="page">
     <div id="heading" class="small-heading">Candy breaker</div>
     <div id="lollipop1"></div>
@@ -21,7 +20,6 @@
         <p>Start Game</p>
       </button>
     </div>
-
     <div id="gameover">
       <img src="img/youwon.png" alt="" id="youwon">
       <img src="img/gameover.png" alt="" id="youlose">
@@ -40,6 +38,7 @@
   </div>
   <script src="components.js"></script>
   <script src="game.js"></script>
-</body>
-
+		<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+	</body>
 </html>
+
