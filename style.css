@@ -1,17 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
 @font-face {
 	font-family: "cherry bomb";
 	src: url("./font/CherryBomb-Regular.woff")format("woff");
 }
 
 #sound {
-	width: 30px;
-	height: 30px;
+	width: 60px;
+	height: 60px;
 	cursor: pointer;
 	position: absolute;
-	top: 465px;
-	left: 15px;
+	/* top: 465px; */
+	bottom: 80px;
+	left: 25px;
 }
 
 #gameover {
@@ -21,6 +23,7 @@
 	transform: translate(-50%, -50%);
 	width: 400px;
 	height: 500px;
+	border-radius: 15px;
 	background: rgba(44, 40, 40, 0.8);
 	display: none;
 	z-index: 4;
@@ -29,7 +32,7 @@
 #youwon {
 	width: 100px;
 	position: absolute;
-	top: 200px;
+	top: 100px;
 	left: 150px;
 	display: none;
 	z-index: 3;
@@ -38,7 +41,7 @@
 #youlose {
 	width: 400px;
 	position: absolute;
-	top: 100px;
+	top: 60px;
 	left: 0px;
 	display: none;
 	z-index: 3;
@@ -46,12 +49,107 @@
 
 #restart {
 	position: absolute;
-	top: 310px;
-	left: 180px;
+	top: 250px;
+	left: 80px;
 	cursor: pointer;
 	font-size: 1.25em;
 	color: #FFF;
 	z-index: 3;
+}
+
+a {
+	position: relative;
+	left: -5px;
+	display: inline-block;
+	padding: 15px 30px;
+	color: #FF639D;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	text-decoration: none;
+	font-size: 50px;
+	font-weight: 300;
+	overflow: hidden;
+	transition: 0.2s;
+}
+
+
+
+a:hover {
+	color: hsl(325, 57%, 40%);
+	background: #FF639D;
+	box-shadow: 0 0 10px #FF639D, 0 0 40px #FF639D, 0 0 80px #FF639D;
+	transition-delay: 1s;
+}
+
+
+a span {
+	position: absolute;
+	display: block;
+}
+
+
+
+
+a span:nth-child(1) {
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, #FF639D);
+}
+
+
+
+a:hover span:nth-child(1) {
+	left: 100%;
+	transition: 1s;
+}
+
+
+a span:nth-child(3) {
+	bottom: 0;
+	right: -100%;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(270deg, transparent, #FF639D);
+}
+
+a:hover span:nth-child(3) {
+	right: 100%;
+	transition: 1s;
+	transition-delay: 0.5s;
+}
+
+
+
+a span:nth-child(2) {
+	top: -100%;
+	right: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(180deg, transparent, #FF639D);
+}
+
+a:hover span:nth-child(2) {
+	top: 100%;
+	transition: 1s;
+	transition-delay: 0.25s;
+}
+
+
+
+a span:nth-child(4) {
+	bottom: -100%;
+	left: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(360deg, transparent, #FF639D);
+}
+
+a:hover span:nth-child(4) {
+	bottom: 100%;
+	transition: 1s;
+	transition-delay: 0.75s;
 }
 
 * {
@@ -73,7 +171,7 @@
 }
 
 .start-screen {
-	padding: 80px;
+	padding: 150px;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
@@ -92,7 +190,7 @@
 	cursor: pointer;
 	background-color: #f834c1;
 	color: aliceblue;
-	font-size: large;
+	font-size: 2em;
 	font-family: Lobster;
 	transition: all 0.3s ease-in-out;
 	letter-spacing: 2px;
@@ -131,7 +229,7 @@
 	font-weight: normal;
 	font-size: 30px;
 	color: #ff4dcd;
-    user-select: none;
+	user-select: none;
 }
 
 #gameboard {
@@ -171,18 +269,18 @@
 	line-height: 15px;
 	text-shadow: 0px 0px 6px rgba(255, 0, 153, 0.93);
 	color: #ffbfe2;
-    user-select: none;
+	user-select: none;
 }
 
-#candy1{
-    background: url("./img/rightbottom.png");
-    background-repeat: no-repeat;
-    position: absolute;
-    right:0px;
-    bottom:40px;
-    height: 250px;
-    width: 250px;
-    z-index: 5;
+#candy1 {
+	background: url("./img/rightbottom.png");
+	background-repeat: no-repeat;
+	position: absolute;
+	right: 0px;
+	bottom: 40px;
+	height: 250px;
+	width: 250px;
+	z-index: 5;
 }
 
 /*! Bahar ka hai */
