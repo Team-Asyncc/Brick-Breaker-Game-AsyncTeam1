@@ -1,12 +1,13 @@
-const canvas = document.getElementById('gameboard');
-const ctx = canvas.getContext('2d');
-const heading = document.getElementById('heading');
+const canvas = document.getElementById("gameboard");
+const ctx = canvas.getContext("2d");
+const heading = document.getElementById("heading");
+const startClass = document.querySelector(".start-screen");
 // dom
-const btn = document.getElementById('start');
-btn.addEventListener('click', () => {
-	canvas.classList.toggle('hide');
-	heading.classList.toggle('hide');
-
+const btn = document.getElementById("start");
+btn.addEventListener("click", () => {
+  canvas.classList.toggle("hide");
+  heading.classList.toggle("hide");
+  startClass.classList.toggle("hide");
 	loop();
 });
 
@@ -22,8 +23,8 @@ let rightArrow = false;
 let life = 3;
 let score = 0;
 let score_unit = 10;
-let level = 3;
-const maxLevel = 1;
+let level = 1;
+const maxLevel = 3;
 let game_over = false;
 let mouseX;
 let mouseY;
@@ -129,20 +130,19 @@ const brick = {
 let bricks = [];
 
 function createBricks() {
-	for (let r = 0; r < brick.row; r++) {
-		bricks[r] = [];
-		for (let c = 0; c < brick.column; c++) {
-			bricks[r][c] = {
-				x: c * (brick.offSetLeft + brick.width) + brick.offSetLeft,
-				y:
-					r * (brick.offSetTop + brick.height) +
-					brick.offSetTop +
-					brick.marginTop,
-				status: true,
-				checkPoint: false,
-			};
-		}
-	}
+  for (let r = 0; r < brick.row; r++) {
+    bricks[r] = [];
+    for (let c = 0; c < brick.column; c++) {
+      bricks[r][c] = {
+        x: c * (brick.offSetLeft + brick.width) + brick.offSetLeft,
+        y: r * (brick.offSetTop + brick.height) +
+          brick.offSetTop +
+          brick.marginTop,
+        status: true,
+        checkPoint: false,
+      };
+    }
+  }
 }
 
 createBricks();
@@ -170,6 +170,7 @@ let randomY = Math.floor(Math.random() * 3);
 bricks[randomX][randomY].checkPoint = true;
 powerBallY = bricks[randomX][randomY].y;
 powerBallX = bricks[randomY][randomY].x;
+
 function powerBall() {
 	if (
 		powerBallX < paddle.x + paddle.width &&
