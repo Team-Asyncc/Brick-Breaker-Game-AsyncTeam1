@@ -1,13 +1,15 @@
-const canvas = document.getElementById("gameboard");
-const ctx = canvas.getContext("2d");
-const heading = document.getElementById("heading");
-const startClass = document.querySelector(".start-screen");
+const canvas = document.getElementById('gameboard');
+const ctx = canvas.getContext('2d');
+const heading = document.getElementById('heading');
+const startClass = document.querySelector('.start-screen');
 // dom
-const btn = document.getElementById("start");
-btn.addEventListener("click", () => {
-  canvas.classList.toggle("hide");
-  heading.classList.toggle("hide");
-  startClass.classList.toggle("hide");
+const btn = document.getElementById('start');
+const retryBtn = document.getElementById('retry-btn');
+
+btn.addEventListener('click', () => {
+	canvas.classList.toggle('hide');
+	heading.classList.toggle('hide');
+	startClass.classList.toggle('hide');
 	loop();
 });
 
@@ -24,7 +26,7 @@ let life = 3;
 let score = 0;
 let score_unit = 10;
 let level = 1;
-const maxLevel = 3;
+const maxLevel = 1;
 let game_over = false;
 let mouseX;
 let mouseY;
@@ -35,10 +37,11 @@ const paddle = {
 	width: paddle_width,
 	height: paddle_height,
 	dx: 5,
+	fillColor: '#ff649f',
 };
 
 const drawPaddle = () => {
-	ctx.fillStyle = '#ff649f';
+	ctx.fillStyle = paddle.fillColor;
 	ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
 	ctx.strokeStyle = '#52006A';
 	ctx.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
@@ -130,19 +133,20 @@ const brick = {
 let bricks = [];
 
 function createBricks() {
-  for (let r = 0; r < brick.row; r++) {
-    bricks[r] = [];
-    for (let c = 0; c < brick.column; c++) {
-      bricks[r][c] = {
-        x: c * (brick.offSetLeft + brick.width) + brick.offSetLeft,
-        y: r * (brick.offSetTop + brick.height) +
-          brick.offSetTop +
-          brick.marginTop,
-        status: true,
-        checkPoint: false,
-      };
-    }
-  }
+	for (let r = 0; r < brick.row; r++) {
+		bricks[r] = [];
+		for (let c = 0; c < brick.column; c++) {
+			bricks[r][c] = {
+				x: c * (brick.offSetLeft + brick.width) + brick.offSetLeft,
+				y:
+					r * (brick.offSetTop + brick.height) +
+					brick.offSetTop +
+					brick.marginTop,
+				status: true,
+				checkPoint: false,
+			};
+		}
+	}
 }
 
 createBricks();
@@ -180,6 +184,7 @@ function powerBall() {
 	) {
 		flag = false;
 		paddle.width = 120;
+		paddle.fillColor = 'red';
 	}
 	if (powerBallY > canvas.height) flag = false;
 
@@ -187,8 +192,8 @@ function powerBall() {
 	powerBallY += 0.1;
 
 	ctx.beginPath();
-	ctx.arc(powerBallX, powerBallY + 50, 8, 0, 360);
-	ctx.fillStyle = 'green';
+	ctx.arc(powerBallX, powerBallY + 50, 16, 0, 360);
+	ctx.fillStyle = 'red';
 	ctx.fill();
 
 	requestAnimationFrame(powerBall);
@@ -381,6 +386,12 @@ function showYouWin() {
 	gameover.style.display = 'block';
 	youwon.style.display = 'block';
 	realistic();
+	retryBtn.innerHTML = `
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Try Again`;
 }
 
 // SHOW YOU LOSE
@@ -388,6 +399,13 @@ function showYouLose() {
 	gameover.style.display = 'block';
 	youlose.style.display = 'block';
 	snow();
+	retryBtn.innerHTML = `
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Try Again
+  `;
 }
 
 // confetti
