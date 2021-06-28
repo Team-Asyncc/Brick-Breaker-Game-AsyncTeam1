@@ -26,7 +26,7 @@ let life = 3;
 let score = 0;
 let score_unit = 10;
 let level = 1;
-const maxLevel = 1;
+const maxLevel = 3;
 let game_over = false;
 let mouseX;
 let mouseY;
