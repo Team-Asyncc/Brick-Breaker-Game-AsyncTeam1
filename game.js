@@ -391,7 +391,7 @@ function showYouWin() {
     <span></span>
     <span></span>
     <span></span>
-    Try Again`;
+    Play Again`;
 }
 
 // SHOW YOU LOSE
